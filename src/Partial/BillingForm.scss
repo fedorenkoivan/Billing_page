@@ -6,6 +6,36 @@
   border-radius: 8px;
   font-family: sans-serif;
   color: #333;
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+
+    > span {
+      font-size: 0.85rem;
+      color: #777;
+      text-transform: lowercase;
+      white-space: nowrap;
+      padding: 0 12px;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: #ddd;
+    }
+
+    &::before {
+      margin-right: 12px;
+    }
+
+    &::after {
+      margin-left: 12px;
+    }
+  }
 }
 
 .trial-banner {

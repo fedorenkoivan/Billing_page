@@ -8,20 +8,30 @@
 
   .back-button {
     background: none;
-    border: none;
     font-size: 1.25rem;
     cursor: pointer;
+    border: none;
   }
   .checkout-title {
-    font-size: 1.25rem;
+    font-family: "Inter";
+    font-size: 18px;
     font-weight: 600;
+    color: #363a43;
   }
 
   .language-toggle {
     background: none;
     border: none;
-    font-size: 0.9rem;
     cursor: pointer;
-    color: #007aff;
+
+    width: 25px;
+    height: 24px;
+    font-style: normal;
+    font-weight: 540;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+
+    color: #363a43;
   }
 }
