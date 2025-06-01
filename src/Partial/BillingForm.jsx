@@ -21,27 +21,13 @@ const CheckoutForm = () => {
 
   return (
     <div className="checkout-container">
-      <div className="checkout-header">
-        <button
-          className="back-button"
-          type="button"
-          onClick={() => window.history.back()}
-        >
-          ←
-        </button>
-        <h1 className="checkout-title">Checkout</h1>
-        <button className="language-toggle" type="button">
-          Укр
-        </button>
-      </div>
-
       <div className="trial-banner">
         <span className="free-period">5 days free</span>
         <span className="trial-details">then 299.99 UAH per 14 days</span>
       </div>
 
       <div className="payment-section">
-        <ApplePayButton onClick={() => alert("Apple Pay flow goes here")} />
+        <ApplePayButton onClick={() => console.log("Apple Pay flow goes here")} />
       </div>
 
       <div className="divider">

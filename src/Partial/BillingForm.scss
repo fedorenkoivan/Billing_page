@@ -4,36 +4,8 @@
   padding: 24px;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   font-family: sans-serif;
   color: #333;
-}
-
-.checkout-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-
-  .back-button {
-    background: none;
-    border: none;
-    font-size: 1.25rem;
-    cursor: pointer;
-  }
-
-  .checkout-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-
-  .language-toggle {
-    background: none;
-    border: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    color: #007aff;
-  }
 }
 
 .trial-banner {
@@ -95,11 +67,12 @@
     }
 
     input {
+      width: 100%;
+      box-sizing: border-box;
       padding: 10px 12px;
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 6px;
-      transition: border-color 0.2s ease;
       outline: none;
 
       &.input-error {

@@ -1,0 +1,27 @@
+.checkout-header {
+  width: 840px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  .back-button {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+  .checkout-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .language-toggle {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #007aff;
+  }
+}
