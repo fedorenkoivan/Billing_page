@@ -3,7 +3,7 @@ import "./BillingForm.scss";
 
 const ApplePayButton = ({ onClick }) => (
   <button className="apple-pay-button" type="button" onClick={onClick}>
-     Pay
+     Pay
   </button>
 );
 
@@ -15,7 +15,7 @@ const CheckoutForm = () => {
       cvv: "",
     },
     onSubmit: (values) => {
-      alert("Submitting card info:\n" + JSON.stringify(values, null, 2));
+      console.log("Form submitted with values:", values);
     },
   });
 
@@ -128,8 +128,24 @@ const CheckoutForm = () => {
           discounts applied.
         </div>
       </form>
+      <div className="order-info-card">
+        <div className="order-info-header">
+          <span className="order-info-title">Order info (≤ 100 char.)</span>
+          <span className="order-info-subtitle">Description (≤ 400 char.)</span>
+        </div>
 
+        <div className="order-info-body">
+          <div className="product-name">
+            Lamel Professional Smart Skin Compact Powder
+          </div>
+          <div className="product-desc">Пудра для лица</div>
+        </div>
 
+        <div className="order-info-footer">
+          <span className="free-period">5 days free</span>
+          <span className="trial-details">then 299.99 UAH per 14 days</span>
+        </div>
+      </div>
     </div>
   );
 };
