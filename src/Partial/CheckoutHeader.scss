@@ -2,26 +2,54 @@
   width: 840px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  height: 104px;
 
+  .checkout-title-section {
+    font-family: "Inter";
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #363a43;
+    .free-period {
+      font-family: "Inter";
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      text-align: center;
+    }
+    .trial-details {
+      font-family: "Inter";
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+    }
+  }
   .back-button {
     background: none;
     border: none;
-    font-size: 1.25rem;
     cursor: pointer;
   }
   .checkout-title {
-    font-size: 1.25rem;
+    font-family: "Inter";
+    font-size: 18px;
     font-weight: 600;
+    color: #363a43;
   }
 
   .language-toggle {
     background: none;
     border: none;
-    font-size: 0.9rem;
     cursor: pointer;
-    color: #007aff;
+    width: 25px;
+    height: 24px;
+    font-style: normal;
+    font-weight: 540;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+
+    color: #363a43;
   }
 }

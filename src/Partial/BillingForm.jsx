@@ -1,9 +1,13 @@
 import { useFormik } from "formik";
+import AppleIcon from "@mui/icons-material/Apple";
 import "./BillingForm.scss";
 
 const ApplePayButton = ({ onClick }) => (
   <button className="apple-pay-button" type="button" onClick={onClick}>
-     Pay
+    <div className="apple-pay-logo">
+      <AppleIcon />
+      <span>Pay</span>
+    </div>
   </button>
 );
 
@@ -12,7 +16,7 @@ const CheckoutForm = () => {
     initialValues: {
       cardNumber: "",
       expirationDate: "",
-      cvv: "",
+      cvc: "",
     },
     onSubmit: (values) => {
       console.log("Form submitted with values:", values);
@@ -21,13 +25,10 @@ const CheckoutForm = () => {
 
   return (
     <div className="checkout-container">
-      <div className="trial-banner">
-        <span className="free-period">5 days free</span>
-        <span className="trial-details">then 299.99 UAH per 14 days</span>
-      </div>
-
       <div className="payment-section">
-        <ApplePayButton onClick={() => console.log("Apple Pay flow goes here")} />
+        <ApplePayButton
+          onClick={() => console.log("Apple Pay flow goes here")}
+        />
       </div>
 
       <div className="divider">
@@ -81,21 +82,23 @@ const CheckoutForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="cvv">CVV</label>
-            <input
-              id="cvv"
-              name="cvv"
-              type="password"
-              placeholder="***"
-              value={formik.values.cvv}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={
-                formik.touched.cvv && formik.errors.cvv ? "input-error" : ""
-              }
-            />
-            {formik.touched.cvv && formik.errors.cvv ? (
-              <div className="error-message">{formik.errors.cvv}</div>
+            <label htmlFor="cvc">CVC</label>
+            <div className="input-wrapper">
+              <input
+                id="cvc"
+                name="cvc"
+                type="password"
+                placeholder="..."
+                value={formik.values.cvc}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={
+                  formik.touched.cvc && formik.errors.cvc ? "input-error" : ""
+                }
+              />
+            </div>
+            {formik.touched.cvc && formik.errors.cvc ? (
+              <div className="error-message">{formik.errors.cvc}</div>
             ) : null}
           </div>
         </div>
@@ -109,15 +112,16 @@ const CheckoutForm = () => {
         </button>
 
         <div className="disclaimer">
-          You’ll have your Plan Pro for 1 year. After this period of time, your
-          plan will be automatically renewed at its original price without any
-          discounts applied.
+          You’ll have your <span>Plan Pro for 1 year</span>. After this period
+          of time, your plan will be <span>automatically renewed</span> at its
+          original price without any discounts applied.
         </div>
       </form>
       <div className="order-info-card">
         <div className="order-info-header">
           <span className="order-info-title">Order info (≤ 100 char.)</span>
           <span className="order-info-subtitle">Description (≤ 400 char.)</span>
+          <hr />
         </div>
 
         <div className="order-info-body">
@@ -125,6 +129,7 @@ const CheckoutForm = () => {
             Lamel Professional Smart Skin Compact Powder
           </div>
           <div className="product-desc">Пудра для лица</div>
+          <hr />
         </div>
 
         <div className="order-info-footer">
