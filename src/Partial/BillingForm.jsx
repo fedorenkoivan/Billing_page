@@ -1,4 +1,4 @@
-import { useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import AppleIcon from "@mui/icons-material/Apple";
 import "./BillingForm.scss";
 
@@ -12,17 +12,6 @@ const ApplePayButton = ({ onClick }) => (
 );
 
 const CheckoutForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      cardNumber: "",
-      expirationDate: "",
-      cvc: "",
-    },
-    onSubmit: (values) => {
-      console.log("Form submitted with values:", values);
-    },
-  });
-
   return (
     <div className="checkout-container">
       <div className="payment-section">
@@ -35,88 +24,95 @@ const CheckoutForm = () => {
         <span>or pay with card</span>
       </div>
 
-      <form className="billing-form" onSubmit={formik.handleSubmit} noValidate>
-        <div className="form-group">
-          <label htmlFor="cardNumber">Card Number</label>
-          <input
-            id="cardNumber"
-            name="cardNumber"
-            type="text"
-            placeholder="1234 1234 1234 1234"
-            value={formik.values.cardNumber}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className={
-              formik.touched.cardNumber && formik.errors.cardNumber
-                ? "input-error"
-                : ""
-            }
-          />
-          {formik.touched.cardNumber && formik.errors.cardNumber ? (
-            <div className="error-message">{formik.errors.cardNumber}</div>
-          ) : null}
-        </div>
-
-        <div className="wrapper">
-          <div className="form-group">
-            <label htmlFor="expirationDate">Expiration Date</label>
-            <input
-              id="expirationDate"
-              name="expirationDate"
-              type="text"
-              placeholder="MM/YY"
-              value={formik.values.expirationDate}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={
-                formik.touched.expirationDate && formik.errors.expirationDate
-                  ? "input-error"
-                  : ""
-              }
-            />
-            {formik.touched.expirationDate && formik.errors.expirationDate ? (
-              <div className="error-message">
-                {formik.errors.expirationDate}
-              </div>
-            ) : null}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="cvc">CVC</label>
-            <div className="input-wrapper">
-              <input
-                id="cvc"
-                name="cvc"
-                type="password"
-                placeholder="..."
-                value={formik.values.cvc}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+      <Formik
+        initialValues={{
+          cardNumber: "",
+          expirationDate: "",
+          cvc: "",
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          console.log("Form submitted with values:", values);
+          setSubmitting(false);
+        }}
+      >
+        {({ isValid, isSubmitting, touched, errors }) => (
+          <Form className="billing-form" noValidate>
+            <div className="form-group">
+              <label htmlFor="cardNumber">Card Number</label>
+              <Field
+                id="cardNumber"
+                name="cardNumber"
+                type="text"
+                placeholder="1234 1234 1234 1234"
                 className={
-                  formik.touched.cvc && formik.errors.cvc ? "input-error" : ""
+                  touched.cardNumber && errors.cardNumber ? "input-error" : ""
                 }
               />
+              <ErrorMessage
+                name="cardNumber"
+                component="div"
+                className="error-message"
+              />
             </div>
-            {formik.touched.cvc && formik.errors.cvc ? (
-              <div className="error-message">{formik.errors.cvc}</div>
-            ) : null}
-          </div>
-        </div>
 
-        <button
-          type="submit"
-          className="btn btn-primary start-trial-button"
-          disabled={!formik.isValid || formik.isSubmitting}
-        >
-          Start Trial
-        </button>
+            <div className="wrapper">
+              <div className="form-group">
+                <label htmlFor="expirationDate">Expiration Date</label>
+                <Field
+                  id="expirationDate"
+                  name="expirationDate"
+                  type="text"
+                  placeholder="MM/YY"
+                  className={
+                    touched.expirationDate && errors.expirationDate
+                      ? "input-error"
+                      : ""
+                  }
+                />
+                <ErrorMessage
+                  name="expirationDate"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
 
-        <div className="disclaimer">
-          You’ll have your <span>Plan Pro for 1 year</span>. After this period
-          of time, your plan will be <span>automatically renewed</span> at its
-          original price without any discounts applied.
-        </div>
-      </form>
+              <div className="form-group">
+                <label htmlFor="cvc">CVC</label>
+                <div className="input-wrapper">
+                  <Field
+                    id="cvc"
+                    name="cvc"
+                    type="password"
+                    placeholder="..."
+                    className={touched.cvc && errors.cvc ? "input-error" : ""}
+                  />
+                </div>
+                <ErrorMessage
+                  name="cvc"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-primary start-trial-button"
+              disabled={!isValid || isSubmitting}
+            >
+              Start Trial
+            </button>
+
+            <div className="disclaimer">
+              You'll have your <span>Plan Pro for 1 year</span>. After this
+              period of time, your plan will be{" "}
+              <span>automatically renewed</span> at its original price without
+              any discounts applied.
+            </div>
+          </Form>
+        )}
+      </Formik>
+
       <div className="order-info-card">
         <div className="order-info-header">
           <span className="order-info-title">Order info (≤ 100 char.)</span>
