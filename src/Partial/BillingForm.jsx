@@ -27,11 +27,6 @@ const CheckoutForm = () => {
 
   return (
     <div className="checkout-container">
-      <div className="trial-banner">
-        <span className="free-period">5 days free</span>
-        <span className="trial-details">then 299.99 UAH per 14 days</span>
-      </div>
-
       <div className="payment-section">
         <ApplePayButton onClick={() => console.log("Apple Pay flow goes here")} />
       </div>

@@ -1,16 +1,20 @@
-import './CheckoutHeader.scss';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import "./CheckoutHeader.scss";
 
 const CheckoutHeader = () => {
   return (
-    <header className="checkout-header">
+    <div className="checkout-header">
       <ArrowBackIcon className="back-button" />
 
+      <div className="checkout-title-section">
       <h1 className="checkout-title">Checkout</h1>
+        <span className="free-period">5 days free</span>
+        <span className="trial-details">then 299.99 UAH per 14 days</span>
+      </div>
       <button className="language-toggle" type="button">
         Укр
       </button>
-    </header>
+    </div>
   );
 };
 
