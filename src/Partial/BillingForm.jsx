@@ -58,43 +58,40 @@ const CheckoutForm = () => {
             </div>
 
             <div className="wrapper">
-              <div className="form-group">
-                <label htmlFor="expirationDate">Expiration Date</label>
-                <Field
-                  id="expirationDate"
-                  name="expirationDate"
-                  type="text"
-                  placeholder="MM/YY"
-                  className={
-                    touched.expirationDate && errors.expirationDate
-                      ? "input-error"
-                      : ""
-                  }
-                />
-                <ErrorMessage
-                  name="expirationDate"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="cvc">CVC</label>
-                <div className="input-wrapper">
-                  <Field
-                    id="cvc"
-                    name="cvc"
-                    type="password"
-                    placeholder="..."
-                    className={touched.cvc && errors.cvc ? "input-error" : ""}
+              {[
+                {
+                  name: "expirationDate",
+                  label: "Expiration Date",
+                  type: "text",
+                  placeholder: "MM/YY",
+                },
+                {
+                  name: "cvc",
+                  label: "CVC",
+                  type: "password",
+                  placeholder: "...",
+                },
+              ].map(({ name, label, type, placeholder }) => (
+                <div className="form-group" key={name}>
+                  <label htmlFor={name}>{label}</label>
+                  <div className={name === "cvc" ? "input-wrapper" : ""}>
+                    <Field
+                      id={name}
+                      name={name}
+                      type={type}
+                      placeholder={placeholder}
+                      className={
+                        touched[name] && errors[name] ? "input-error" : ""
+                      }
+                    />
+                  </div>
+                  <ErrorMessage
+                    name={name}
+                    component="div"
+                    className="error-message"
                   />
                 </div>
-                <ErrorMessage
-                  name="cvc"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
+              ))}
             </div>
 
             <button
