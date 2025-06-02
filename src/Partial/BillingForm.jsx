@@ -1,25 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { validationSchema } from "../Validation/ValidationSchema";
 import AppleIcon from "@mui/icons-material/Apple";
 import "./BillingForm.scss";
-
-const validationSchema = Yup.object({
-  cardNumber: Yup.string()
-    .required("Card number is required")
-    .matches(
-      /^\d{4} \d{4} \d{4} \d{4}$/,
-      "Card number must be in format 1234 1234 1234 1234"
-    ),
-  expirationDate: Yup.string()
-    .required("Expiration date is required")
-    .matches(
-      /^(0[1-9]|1[0-2])\/\d{2}$/,
-      "Expiration date must be in format MM/YY"
-    ),
-  cvc: Yup.string()
-    .required("CVC is required")
-    .matches(/^\d{3}$/, "CVC must be 3 digits"),
-});
 
 const ApplePayButton = ({ onClick }) => (
   <button className="apple-pay-button" type="button" onClick={onClick}>
