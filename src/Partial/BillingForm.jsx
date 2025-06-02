@@ -1,9 +1,15 @@
 import { useFormik } from "formik";
+import AppleIcon from '@mui/icons-material/Apple';
 import "./BillingForm.scss";
+
 
 const ApplePayButton = ({ onClick }) => (
   <button className="apple-pay-button" type="button" onClick={onClick}>
-     Pay
+    <div className="apple-pay-logo">
+     <AppleIcon/>
+     <span>Pay</span>
+    </div>
+
   </button>
 );
 

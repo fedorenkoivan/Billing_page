@@ -62,16 +62,24 @@
 .payment-section {
   text-align: center;
   margin-bottom: 16px;
+  height: 48px;
 
   .apple-pay-button {
-    background: #000;
-    color: #fff;
-    font-size: 1rem;
+    background: #000000;
+    color: #FFFFFF;
+    font-size: 1.5rem;
     padding: 12px 0;
     width: 100%;
     border: none;
-    border-radius: 6px;
+    border-radius: 3px;
     cursor: pointer;
+  }
+
+  .apple-pay-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
   }
 }
 

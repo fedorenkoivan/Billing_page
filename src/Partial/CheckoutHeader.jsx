@@ -1,9 +1,11 @@
 import './CheckoutHeader.scss';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const CheckoutHeader = () => {
   return (
     <header className="checkout-header">
-      <button className="back-button" type="button"> ← </button>
+      <ArrowBackIcon className="back-button" />
+
       <h1 className="checkout-title">Checkout</h1>
       <button className="language-toggle" type="button">
         Укр
