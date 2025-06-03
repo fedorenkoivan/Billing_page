@@ -37,7 +37,7 @@ const CheckoutForm = () => {
           setSubmitting(false);
         }}
       >
-        {({ isValid, isSubmitting, touched, errors }) => (
+        {({ isValid, isSubmitting, touched, errors, setFieldTouched }) => (
           <Form className="billing-form" noValidate>
             <div className="form-group">
               <label htmlFor="cardNumber">Card Number</label>
@@ -58,40 +58,83 @@ const CheckoutForm = () => {
             </div>
 
             <div className="wrapper">
-              {[
-                {
-                  name: "expirationDate",
-                  label: "Expiration Date",
-                  type: "text",
-                  placeholder: "MM/YY",
-                },
-                {
-                  name: "cvc",
-                  label: "CVC",
-                  type: "password",
-                  placeholder: "...",
-                },
-              ].map(({ name, label, type, placeholder }) => (
-                <div className="form-group" key={name}>
-                  <label htmlFor={name}>{label}</label>
-                  <div className={name === "cvc" ? "input-wrapper" : ""}>
-                    <Field
-                      id={name}
-                      name={name}
-                      type={type}
-                      placeholder={placeholder}
-                      className={
-                        touched[name] && errors[name] ? "input-error" : ""
+              <div className="form-group">
+                <label htmlFor="expirationDate">Expiration Date</label>
+                <Field
+                  id="expirationDate"
+                  name="expirationDate"
+                  type="text"
+                  placeholder="MM/YY"
+                  className={
+                    touched.expirationDate && errors.expirationDate
+                      ? "input-error"
+                      : ""
+                  }
+                />
+                <ErrorMessage
+                  name="expirationDate"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="cvc">CVC</label>
+                <div className="input-wrapper">
+                  <Field
+                    id="cvc"
+                    name="cvc"
+                    type="text"
+                    className={touched.cvc && errors.cvc ? "input-error" : ""}
+                    onFocus={(e) => {
+                      document.querySelector(".cvc-placeholder").style.display =
+                        "none";
+                      e.target.placeholder = "123";
+                    }}
+                    onBlur={(e) => {
+                      if (!e.target.value) {
+                        document.querySelector(
+                          ".cvc-placeholder"
+                        ).style.display = "block";
+                        e.target.placeholder = "";
                       }
-                    />
-                  </div>
-                  <ErrorMessage
-                    name={name}
-                    component="div"
-                    className="error-message"
+                      setFieldTouched("cvc", true);
+                    }}
                   />
+                  {!touched.cvc || !errors.cvc?.length ? (
+                    <div className="cvc-placeholder">
+                      <span>•</span>
+                      <span>•</span>
+                      <span>•</span>
+                    </div>
+                  ) : null}
+                  <button
+                    type="button"
+                    className="info-button"
+                    onClick={() => console.log("Show CVC info")}
+                    aria-label="CVC Information"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                      <circle cx="12" cy="12" r="10" fill="#DADCE0" />
+                      <text
+                        x="12"
+                        y="16"
+                        fontFamily="Inter"
+                        fontSize="14"
+                        fill="#6B7280"
+                        textAnchor="middle"
+                      >
+                        i
+                      </text>
+                    </svg>
+                  </button>
                 </div>
-              ))}
+                <ErrorMessage
+                  name="cvc"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
             </div>
 
             <button

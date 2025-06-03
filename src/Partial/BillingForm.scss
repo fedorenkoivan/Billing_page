@@ -72,6 +72,56 @@
     flex-direction: column;
     margin-bottom: 16px;
 
+    .input-wrapper {
+      position: relative;
+
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 40px 10px 36px;
+        font-size: 1rem;
+        border: 1px solid #c7c9d1;
+        border-radius: 6px;
+        outline: none;
+
+        &.input-error {
+          border-color: #e74c3c;
+        }
+      }
+
+      .cvc-placeholder {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+        display: flex;
+        gap: 4px;
+        pointer-events: none;
+
+        span {
+          font-size: 24px;
+          color: #71757d;
+          line-height: 0;
+        }
+      }
+
+      .info-button {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
     label {
       font-family: "Inter";
       font-size: 12px;
@@ -141,7 +191,7 @@
 }
 
 .order-info-card {
-  background: #F7F7F9;
+  background: #f7f7f9;
   border-radius: 8px;
   margin-top: 24px;
   border: 1px solid #e0e0e0;
