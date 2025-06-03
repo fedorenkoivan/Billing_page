@@ -132,10 +132,8 @@ const CheckoutForm = () => {
             </button>
 
             <div className="disclaimer">
-              You'll have your <span>Plan Pro for 1 year</span>. After this
-              period of time, your plan will be <span>automatically renewed</span>
-              at its original price without
-              any discounts applied.
+              You'll have your <span>Plan Pro during 1 year</span>. After this
+              period of time, your plan will be <span>automatically renewed</span> with its original price without any discounts applied.
             </div>
           </Form>
         )}
@@ -160,6 +158,10 @@ const CheckoutForm = () => {
           <span className="free-period">5 days free</span>
           <span className="trial-details">then 299.99 UAH per 14 days</span>
         </div>
+      </div>
+
+      <div className="checkout-footer">
+        Powered by <img src="/union.svg" alt="solid" />
       </div>
     </div>
   );
