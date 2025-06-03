@@ -30,6 +30,7 @@ const CheckoutForm = () => {
           cardNumber: "",
           expirationDate: "",
           cvc: "",
+          cvcFocused: false,
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
@@ -37,7 +38,15 @@ const CheckoutForm = () => {
           setSubmitting(false);
         }}
       >
-        {({ isValid, isSubmitting, touched, errors, setFieldTouched }) => (
+        {({
+          isValid,
+          isSubmitting,
+          touched,
+          errors,
+          setFieldTouched,
+          setFieldValue,
+          values,
+        }) => (
           <Form className="billing-form" noValidate>
             <div className="form-group">
               <label htmlFor="cardNumber">Card Number</label>
@@ -49,6 +58,22 @@ const CheckoutForm = () => {
                 className={
                   touched.cardNumber && errors.cardNumber ? "input-error" : ""
                 }
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\s/g, "");
+                  if (/^\d+$/.test(value)) {
+                    let formattedValue = "";
+                    for (let i = 0; i < value.length; i++) {
+                      if (i > 0 && i % 4 === 0) {
+                        formattedValue += " ";
+                      }
+                      formattedValue += value[i];
+                    }
+
+                    setFieldValue("cardNumber", formattedValue.slice(0, 19));
+                  } else if (value === "") {
+                    setFieldValue("cardNumber", "");
+                  }
+                }}
               />
               <ErrorMessage
                 name="cardNumber"
@@ -56,7 +81,6 @@ const CheckoutForm = () => {
                 className="error-message"
               />
             </div>
-
             <div className="wrapper">
               <div className="form-group">
                 <label htmlFor="expirationDate">Expiration Date</label>
@@ -70,6 +94,19 @@ const CheckoutForm = () => {
                       ? "input-error"
                       : ""
                   }
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, "");
+
+                    if (value.length <= 4) {
+                      let formattedValue = value;
+                      if (value.length > 2) {
+                        formattedValue = `${value.slice(0, 2)}/${value.slice(
+                          2
+                        )}`;
+                      }
+                      setFieldValue("expirationDate", formattedValue);
+                    }
+                  }}
                 />
                 <ErrorMessage
                   name="expirationDate"
@@ -85,28 +122,29 @@ const CheckoutForm = () => {
                     id="cvc"
                     name="cvc"
                     type="text"
+                    maxLength="3"
                     className={touched.cvc && errors.cvc ? "input-error" : ""}
-                    onFocus={(e) => {
-                      document.querySelector(".cvc-placeholder").style.display = "none";
-                      e.target.placeholder = "123";
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, "");
+                      setFieldValue("cvc", value);
+                    }}
+                    onFocus={() => {
+                      setFieldValue("cvcFocused", true);
                     }}
                     onBlur={(e) => {
-                      if (!e.target.value) {
-                        document.querySelector(
-                          ".cvc-placeholder"
-                        ).style.display = "block";
-                        e.target.placeholder = "123";
-                      }
                       setFieldTouched("cvc", true);
+                      if (!e.target.value) {
+                        setFieldValue("cvcFocused", false);
+                      }
                     }}
                   />
-                  {!touched.cvc || !errors.cvc?.length ? (
+                  {!values.cvc && !values.cvcFocused && (
                     <div className="cvc-placeholder">
                       <span>•</span>
                       <span>•</span>
                       <span>•</span>
                     </div>
-                  ) : null}
+                  )}
                   <button
                     type="button"
                     className="info-button"
@@ -132,9 +170,9 @@ const CheckoutForm = () => {
             </button>
 
             <div className="disclaimer">
-              You'll have your <span>Plan Pro for 1 year</span>. After this
-              period of time, your plan will be <span>automatically renewed</span>
-              at its original price without
+              You'll have your <span>Plan Pro during 1 year</span>. After this
+              period of time, your plan will be
+              <span>automatically renewed</span> with its original price without
               any discounts applied.
             </div>
           </Form>
@@ -146,7 +184,7 @@ const CheckoutForm = () => {
           <span className="order-info-title">Order info ≤ 100 char.</span>
           <span className="order-info-subtitle">Description ≤ 400 char.</span>
         </div>
-          <hr />
+        <hr />
 
         <div className="order-info-body">
           <div className="product-name">
@@ -154,12 +192,16 @@ const CheckoutForm = () => {
           </div>
           <div className="product-desc">Пудра для лица</div>
         </div>
-          <hr />
+        <hr />
 
         <div className="order-info-footer">
           <span className="free-period">5 days free</span>
           <span className="trial-details">then 299.99 UAH per 14 days</span>
         </div>
+      </div>
+
+      <div className="checkout-footer">
+        Powered by <img src="/union.svg" alt="solid" />
       </div>
     </div>
   );

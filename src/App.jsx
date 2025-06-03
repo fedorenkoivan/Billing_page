@@ -1,6 +1,6 @@
 import "./App.css";
-import BillingForm from "./Partial/BillingForm";
 import CheckoutHeader from "./Partial/CheckoutHeader";
+import BillingForm from "./Partial/BillingForm";
 
 function App() {
   return (

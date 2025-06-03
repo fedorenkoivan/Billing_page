@@ -6,20 +6,17 @@
   height: 104px;
 
   .checkout-title-section {
-    font-family: "Inter";
     display: flex;
     align-items: center;
     flex-direction: column;
     color: #363a43;
     .free-period {
-      font-family: "Inter";
       font-weight: 600;
       font-size: 24px;
       line-height: 32px;
       text-align: center;
     }
     .trial-details {
-      font-family: "Inter";
       font-weight: 500;
       font-size: 14px;
       line-height: 20px;
@@ -32,12 +29,10 @@
     cursor: pointer;
   }
   .checkout-title {
-    font-family: "Inter";
     font-size: 18px;
     font-weight: 600;
     color: #363a43;
   }
-
   .language-toggle {
     background: none;
     border: none;
@@ -45,11 +40,11 @@
     width: 25px;
     height: 24px;
     font-style: normal;
-    font-weight: 540;
+    font-weight: 500;
     font-size: 14px;
     line-height: 24px;
     text-align: center;
-
     color: #363a43;
+    font-family: "Inter";
   }
 }
