@@ -157,9 +157,8 @@
   position: relative;
   transform: translateY(0);
   transition: background-color 0.2s ease;
-  overflow: hidden; // Important to contain the text animations
+  overflow: hidden;
   
-  // Default text (Pay)
   .button-text {
     display: block;
     transform: translateY(0);
@@ -167,7 +166,6 @@
     transition: transform 120ms ease-out, opacity 120ms ease-out;
   }
   
-  // Processing text (hidden by default)
   .processing-text {
     position: absolute;
     top: 0;
@@ -182,19 +180,16 @@
     transition: transform 120ms ease-out, opacity 120ms ease-out;
   }
   
-  // Mouse down effect
   &:active {
     transform: translateY(4px);
     transition: transform 80ms ease-in;
     background-color: #02742F;
   }
   
-  // Hover effect
   &:hover {
     background-color: #029C3F;
   }
   
-  // Loading state
   &.is-loading {
     .button-text {
       transform: translateY(-16px);
@@ -219,17 +214,9 @@
         border-radius: 50%;
         border-top-color: #fff;
         animation: spin 1s infinite linear;
-        margin-right: 8px; // Space between spinner and text
+        margin-right: 8px;
       }
-      // &::after {
-      //   content: "";
-      //   width: 18px;
-      //   height: 18px;
-      //   border: 3px solid rgba(255, 255, 255, 0.3);
-      //   border-radius: 50%;
-      //   border-top-color: #fff;
-      //   animation: spin 1s infinite linear;
-      // }
+
     }
   }
 }

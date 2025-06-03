@@ -15,6 +15,14 @@ const ApplePayButton = ({ onClick }) => (
 
 const CheckoutForm = () => {
   const [cvcFocused, setCvcFocused] = useState(false);
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    console.log("Form submitted with values:", values);
+    setTimeout(() => {
+      resetForm();
+
+      setSubmitting(false);
+    }, 2000);
+  };
 
   return (
     <div className="checkout-container">
@@ -35,12 +43,7 @@ const CheckoutForm = () => {
           cvc: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log("Form submitted with values:", values);
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 2000);
-        }}
+        onSubmit={handleSubmit}
       >
         {({
           isSubmitting,
@@ -164,13 +167,15 @@ const CheckoutForm = () => {
               </div>
             </div>
 
-<button
-  type="submit"
-  className={`btn btn-primary start-trial-button ${isSubmitting ? "is-loading" : ""}`}
->
-  <span className="button-text">Start Trial</span>
-  <span className="processing-text">Processing</span>
-</button>
+            <button
+              type="submit"
+              className={`btn btn-primary start-trial-button ${
+                isSubmitting ? "is-loading" : ""
+              }`}
+            >
+              <span className="button-text">Start Trial</span>
+              <span className="processing-text">Processing</span>
+            </button>
 
             <div className="disclaimer">
               You'll have your <span>Plan Pro during 1 year</span>. After this
