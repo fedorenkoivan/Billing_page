@@ -35,11 +35,12 @@ const CheckoutForm = () => {
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
           console.log("Form submitted with values:", values);
-          setSubmitting(false);
+          setTimeout(() => {
+            setSubmitting(false);
+          }, 2000);
         }}
       >
         {({
-          isValid,
           isSubmitting,
           touched,
           errors,
@@ -163,10 +164,11 @@ const CheckoutForm = () => {
 
             <button
               type="submit"
-              className="btn btn-primary start-trial-button"
-              disabled={!isValid || isSubmitting}
+              className={`btn btn-primary start-trial-button ${
+                isSubmitting ? "is-loading" : ""
+              }`}
             >
-              Start Trial
+              {isSubmitting ? "Processing payment" : "Start Trial"}
             </button>
 
             <div className="disclaimer">
