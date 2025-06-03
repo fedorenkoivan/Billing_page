@@ -78,7 +78,6 @@
       input {
         width: 100%;
         box-sizing: border-box;
-        padding: 10px 40px 10px 36px;
         font-size: 1rem;
         border: 1px solid #c7c9d1;
         border-radius: 6px;
@@ -93,9 +92,9 @@
         position: absolute;
         top: 50%;
         left: 12px;
-        transform: translateY(-50%);
+        // transform: translateY(-50%);
         display: flex;
-        gap: 4px;
+        // gap: 4px;
         pointer-events: none;
 
         span {
@@ -160,7 +159,7 @@
   .start-trial-button {
     width: 100%;
     padding: 12px;
-    background-color: #28a745;
+    background-color: #028837;
     color: #fff;
     font-size: 1rem;
     font-weight: 500;
@@ -194,7 +193,6 @@
   background: #f7f7f9;
   border-radius: 8px;
   margin-top: 24px;
-  border: 1px solid #e0e0e0;
   overflow: hidden;
 
   .order-info-header {
@@ -208,10 +206,11 @@
     }
 
     .order-info-subtitle {
+      font-family: "Inter";
       display: block;
       font-size: 14px;
-      color: #666;
-      font-weight: 400;
+      color: #363A43;
+      font-weight: 500;
     }
   }
 
@@ -239,7 +238,7 @@
     line-height: 20px;
     text-align: right;
     display: flex;
-    align-items: flex-end;
+    // align-items: flex-end;
     flex-direction: column;
     padding: 16px;
     color: #363a43;
@@ -247,13 +246,7 @@
     .free-period {
       font-size: 16px;
       font-weight: 600;
-      color: #333;
       margin-bottom: 2px;
-    }
-
-    .trial-details {
-      font-size: 14px;
-      color: #666;
     }
   }
 

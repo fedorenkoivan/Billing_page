@@ -87,8 +87,7 @@ const CheckoutForm = () => {
                     type="text"
                     className={touched.cvc && errors.cvc ? "input-error" : ""}
                     onFocus={(e) => {
-                      document.querySelector(".cvc-placeholder").style.display =
-                        "none";
+                      document.querySelector(".cvc-placeholder").style.display = "none";
                       e.target.placeholder = "123";
                     }}
                     onBlur={(e) => {
@@ -96,7 +95,7 @@ const CheckoutForm = () => {
                         document.querySelector(
                           ".cvc-placeholder"
                         ).style.display = "block";
-                        e.target.placeholder = "";
+                        e.target.placeholder = "123";
                       }
                       setFieldTouched("cvc", true);
                     }}
@@ -111,22 +110,9 @@ const CheckoutForm = () => {
                   <button
                     type="button"
                     className="info-button"
-                    onClick={() => console.log("Show CVC info")}
                     aria-label="CVC Information"
                   >
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-                      <circle cx="12" cy="12" r="10" fill="#DADCE0" />
-                      <text
-                        x="12"
-                        y="16"
-                        fontFamily="Inter"
-                        fontSize="14"
-                        fill="#6B7280"
-                        textAnchor="middle"
-                      >
-                        i
-                      </text>
-                    </svg>
+                    <img src="/cvc_info.svg" alt="cvc_info" />
                   </button>
                 </div>
                 <ErrorMessage
@@ -147,8 +133,8 @@ const CheckoutForm = () => {
 
             <div className="disclaimer">
               You'll have your <span>Plan Pro for 1 year</span>. After this
-              period of time, your plan will be{" "}
-              <span>automatically renewed</span> at its original price without
+              period of time, your plan will be <span>automatically renewed</span>
+              at its original price without
               any discounts applied.
             </div>
           </Form>
@@ -157,18 +143,18 @@ const CheckoutForm = () => {
 
       <div className="order-info-card">
         <div className="order-info-header">
-          <span className="order-info-title">Order info (≤ 100 char.)</span>
-          <span className="order-info-subtitle">Description (≤ 400 char.)</span>
-          <hr />
+          <span className="order-info-title">Order info ≤ 100 char.</span>
+          <span className="order-info-subtitle">Description ≤ 400 char.</span>
         </div>
+          <hr />
 
         <div className="order-info-body">
           <div className="product-name">
             Lamel Professional Smart Skin Compact Powder
           </div>
           <div className="product-desc">Пудра для лица</div>
-          <hr />
         </div>
+          <hr />
 
         <div className="order-info-footer">
           <span className="free-period">5 days free</span>
