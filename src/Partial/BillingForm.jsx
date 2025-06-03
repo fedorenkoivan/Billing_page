@@ -30,6 +30,7 @@ const CheckoutForm = () => {
           cardNumber: "",
           expirationDate: "",
           cvc: "",
+          cvcFocused: false,
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
@@ -44,6 +45,7 @@ const CheckoutForm = () => {
           errors,
           setFieldTouched,
           setFieldValue,
+          values,
         }) => (
           <Form className="billing-form" noValidate>
             <div className="form-group">
@@ -120,33 +122,29 @@ const CheckoutForm = () => {
                     id="cvc"
                     name="cvc"
                     type="text"
+                    maxLength="3"
                     className={touched.cvc && errors.cvc ? "input-error" : ""}
                     onChange={(e) => {
                       const value = e.target.value.replace(/\D/g, "");
                       setFieldValue("cvc", value);
-                      }}
-                    onFocus={(e) => {
-                      document.querySelector(".cvc-placeholder").style.display =
-                        "none";
-                      e.target.placeholder = "123";
+                    }}
+                    onFocus={() => {
+                      setFieldValue("cvcFocused", true);
                     }}
                     onBlur={(e) => {
-                      if (!e.target.value) {
-                        document.querySelector(
-                          ".cvc-placeholder"
-                        ).style.display = "block";
-                        e.target.placeholder = "123";
-                      }
                       setFieldTouched("cvc", true);
+                      if (!e.target.value) {
+                        setFieldValue("cvcFocused", false);
+                      }
                     }}
                   />
-                  {!touched.cvc || !errors.cvc?.length ? (
+                  {!values.cvc && !values.cvcFocused && (
                     <div className="cvc-placeholder">
                       <span>•</span>
                       <span>•</span>
                       <span>•</span>
                     </div>
-                  ) : null}
+                  )}
                   <button
                     type="button"
                     className="info-button"
@@ -173,7 +171,7 @@ const CheckoutForm = () => {
 
             <div className="disclaimer">
               You'll have your <span>Plan Pro during 1 year</span>. After this
-              period of time, your plan will be{" "}
+              period of time, your plan will be
               <span>automatically renewed</span> with its original price without
               any discounts applied.
             </div>
