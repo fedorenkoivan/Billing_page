@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useState } from "react";
 import { validationSchema } from "../Validation/ValidationSchema";
 import AppleIcon from "@mui/icons-material/Apple";
 import "./BillingForm.scss";
@@ -13,6 +14,16 @@ const ApplePayButton = ({ onClick }) => (
 );
 
 const CheckoutForm = () => {
+  const [cvcFocused, setCvcFocused] = useState(false);
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    console.log("Form submitted with values:", values);
+    setTimeout(() => {
+      resetForm();
+
+      setSubmitting(false);
+    }, 2000);
+  };
+
   return (
     <div className="checkout-container">
       <div className="payment-section">
@@ -30,16 +41,11 @@ const CheckoutForm = () => {
           cardNumber: "",
           expirationDate: "",
           cvc: "",
-          cvcFocused: false,
         }}
         validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log("Form submitted with values:", values);
-          setSubmitting(false);
-        }}
+        onSubmit={handleSubmit}
       >
         {({
-          isValid,
           isSubmitting,
           touched,
           errors,
@@ -129,16 +135,16 @@ const CheckoutForm = () => {
                       setFieldValue("cvc", value);
                     }}
                     onFocus={() => {
-                      setFieldValue("cvcFocused", true);
+                      setCvcFocused(true);
                     }}
                     onBlur={(e) => {
                       setFieldTouched("cvc", true);
                       if (!e.target.value) {
-                        setFieldValue("cvcFocused", false);
+                        setCvcFocused(true);
                       }
                     }}
                   />
-                  {!values.cvc && !values.cvcFocused && (
+                  {!values.cvc && !cvcFocused && (
                     <div className="cvc-placeholder">
                       <span>•</span>
                       <span>•</span>
@@ -163,10 +169,12 @@ const CheckoutForm = () => {
 
             <button
               type="submit"
-              className="btn btn-primary start-trial-button"
-              disabled={!isValid || isSubmitting}
+              className={`btn btn-primary start-trial-button ${
+                isSubmitting ? "is-loading" : ""
+              }`}
             >
-              Start Trial
+              <span className="button-text">Start Trial</span>
+              <span className="processing-text">Processing</span>
             </button>
 
             <div className="disclaimer">
