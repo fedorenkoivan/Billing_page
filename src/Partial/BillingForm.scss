@@ -145,41 +145,91 @@
   }
 
   .start-trial-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #028837;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transform: translateY(0);
+  transition: background-color 0.2s ease;
+  overflow: hidden; // Important to contain the text animations
+  
+  // Default text (Pay)
+  .button-text {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 120ms ease-out, opacity 120ms ease-out;
+  }
+  
+  // Processing text (hidden by default)
+  .processing-text {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 12px;
-    background-color: #028837;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-    &:active {
-      background-color: #02742F;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform 120ms ease-out, opacity 120ms ease-out;
+  }
+  
+  // Mouse down effect
+  &:active {
+    transform: translateY(4px);
+    transition: transform 80ms ease-in;
+    background-color: #02742F;
+  }
+  
+  // Hover effect
+  &:hover {
+    background-color: #029C3F;
+  }
+  
+  // Loading state
+  &.is-loading {
+    .button-text {
+      transform: translateY(-16px);
+      opacity: 0;
     }
-    &:hover{
-      background-color: #029C3F;
-      transform: translateY(-4px);
-    }
-    &.is-loading{
-      background-color: #028837;
+    
+    .processing-text {
+      transform: translateY(0);
+      opacity: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      flex-direction: row-reverse;
 
-    &::after {
-      content: "";
-      position: static;
-      width: 18px;
-      height: 18px;
-      border: 3px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      border-top-color: #fff;
-      animation: spin 1s infinite linear;
+      
+
+      &::before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s infinite linear;
+        margin-right: 8px; // Space between spinner and text
+      }
+      // &::after {
+      //   content: "";
+      //   width: 18px;
+      //   height: 18px;
+      //   border: 3px solid rgba(255, 255, 255, 0.3);
+      //   border-radius: 50%;
+      //   border-top-color: #fff;
+      //   animation: spin 1s infinite linear;
+      // }
     }
   }
 }
@@ -187,6 +237,11 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes buttonHover {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
 }
 
   .disclaimer {

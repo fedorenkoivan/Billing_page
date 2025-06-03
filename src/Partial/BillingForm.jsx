@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useState } from "react";
 import { validationSchema } from "../Validation/ValidationSchema";
 import AppleIcon from "@mui/icons-material/Apple";
 import "./BillingForm.scss";
@@ -13,6 +14,8 @@ const ApplePayButton = ({ onClick }) => (
 );
 
 const CheckoutForm = () => {
+  const [cvcFocused, setCvcFocused] = useState(false);
+
   return (
     <div className="checkout-container">
       <div className="payment-section">
@@ -30,7 +33,6 @@ const CheckoutForm = () => {
           cardNumber: "",
           expirationDate: "",
           cvc: "",
-          cvcFocused: false,
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
@@ -130,16 +132,16 @@ const CheckoutForm = () => {
                       setFieldValue("cvc", value);
                     }}
                     onFocus={() => {
-                      setFieldValue("cvcFocused", true);
+                      setCvcFocused(true);
                     }}
                     onBlur={(e) => {
                       setFieldTouched("cvc", true);
                       if (!e.target.value) {
-                        setFieldValue("cvcFocused", false);
+                        setCvcFocused(true);
                       }
                     }}
                   />
-                  {!values.cvc && !values.cvcFocused && (
+                  {!values.cvc && !cvcFocused && (
                     <div className="cvc-placeholder">
                       <span>•</span>
                       <span>•</span>
@@ -162,14 +164,13 @@ const CheckoutForm = () => {
               </div>
             </div>
 
-            <button
-              type="submit"
-              className={`btn btn-primary start-trial-button ${
-                isSubmitting ? "is-loading" : ""
-              }`}
-            >
-              {isSubmitting ? "Processing payment" : "Start Trial"}
-            </button>
+<button
+  type="submit"
+  className={`btn btn-primary start-trial-button ${isSubmitting ? "is-loading" : ""}`}
+>
+  <span className="button-text">Start Trial</span>
+  <span className="processing-text">Processing</span>
+</button>
 
             <div className="disclaimer">
               You'll have your <span>Plan Pro during 1 year</span>. After this
