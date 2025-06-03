@@ -1,12 +1,52 @@
-# React + Vite
+# Billing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project is a responsive, interactive billing form designed for handling payment information in a modern web application. It provides a streamlined checkout experience with client-side validation, real-time formatting of user inputs, and visual feedback.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Card Information Collection**: Secure input fields for card number, expiration date, and CVC
+- **Real-time Input Formatting**: Automatic spacing for card numbers and date formatting
+- **Form Validation**: Client-side validation with helpful error messages
+- **Interactive UI Components**: Loading states, responsive buttons, and tooltips
+- **Alternative Payment Methods**: Apple Pay integration
+- **Responsive Design**: Mobile-friendly interface with clean layout
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technologies Used
+
+### Frontend Framework
+- **React 19**: Component-based architecture using the latest React features
+- **Vite 6**: Modern build tool for faster development experience
+
+### Styling
+- **SCSS/Sass**: Advanced styling with nested rules and variables
+- **CSS Animations**: Smooth transitions and loading indicators
+
+### Form Handling
+- **Formik**: Form state management, validation, and submission handling
+- **Yup**: Schema-based form validation with custom rules
+
+### Date & Time
+- **Luxon**: Modern date manipulation library for expiration date validation
+
+### UI Components
+- **Material UI**: Icon components from Material Design
+- **Inter Font**: Clean, modern typography
+
+### Development Tools
+- **ESLint**: Code quality and consistency enforcement
+- **npm**: Package management
+
+## Project Structure
+
+The project follows a component-based architecture:
+- `/src/Partial/` - UI components organized by feature
+- `/src/Validation/` - Form validation schemas
+- `/public/` - Static assets and icons
+
+## Setup and Installation
+
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Run the development server with `npm run dev`
